@@ -60,7 +60,7 @@ const gameFlow = (move) => {
     while (check) {
       check = main.AIMove(main.getBoardOne().getBoard());
       render(main.getBoardOne().getBoard(), main.getBoardTwo().getBoard());
-      main.sleep2();
+      // main.sleep2();
     }
     render(main.getBoardOne().getBoard(), main.getBoardTwo().getBoard());
     if (main.getBoardOne().IsAllShipsSunk()) {

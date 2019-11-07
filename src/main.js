@@ -53,6 +53,6 @@ export {
   AIMove,
   makeMove,
   getPlayerTwo,
-  sleep,
-  sleep2,
+  // sleep,
+  // sleep2,
 };
