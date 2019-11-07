@@ -38,7 +38,7 @@ const GameBoard = () => {
     ships[ships.length - 1].setCoordinate([45, 46, 47, 48]);
   };
   const markOnBoard = (coordinate, option) => {
-    board[Math.round(coordinate / 10)][Math.round(coordinate % 10)] = option ? 'X' : '.';
+    board[Math.floor(coordinate / 10)][Math.floor(coordinate % 10)] = option ? 'X' : '.';
     return option;
   };
 

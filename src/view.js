@@ -3,52 +3,66 @@ import './style.css';
 
 
 const endGame = (player) => {
-  const playerBoard = document.getElementById('playerBoard');
-  playerBoard.innerHTML = '';
-  const computerBoard = document.getElementById('computerBoard');
-  computerBoard.innerHTML = '';
-  const board = document.getElementById('board');
+  const board = document.getElementById('boards');
   board.innerHTML = `${player.getName()} has won !!!`;
 };
 
 const render = (boardOne, boardTwo) => {
-  const playerBoard = document.getElementById('playerBoard');
+  // const playerBoard = document.getElementById('playerBoard');
+  const board = document.getElementById('boards');
+  board.innerHTML = '';
+  // playerBoard.innerHTML = '';
+  const pBoard = document.createElement('div');
+  pBoard.id = 'playerBoard';
+  for (let i = 0; i < 10; i += 1) {
+    const divElement = document.createElement('div');
+    for (let j = 0; j < 10; j += 1) {
+      const spanElement = document.createElement('span');
+      //spanElement.id = `cell-${i}${j}`;
+      spanElement.innerHTML = boardOne[i][j];
+      spanElement.classList.add('board-cell');
+      divElement.appendChild(spanElement);
+    }
+    pBoard.appendChild(divElement);
+  }
+  // const computerBoard = document.getElementById('computerBoard');
+  const cBoard = document.createElement('div');
+  cBoard.id = 'computerBoard';
+  // computerBoard.innerHTML = '';
   for (let i = 0; i < 10; i += 1) {
     const divElement = document.createElement('div');
     for (let j = 0; j < 10; j += 1) {
       const spanElement = document.createElement('span');
       spanElement.id = `cell-${i}${j}`;
-      spanElement.innerHTML = boardOne[i][j];
-      divElement.appendChild(spanElement);
-    }
-    playerBoard.appendChild(divElement);
-  }
-  const computerBoard = document.getElementById('computerBoard');
-  for (let i = 0; i < 10; i += 1) {
-    const divElement = document.createElement('div');
-    for (let j = 0; j < 10; j += 1) {
-      const spanElement = document.createElement('span');
-      spanElement.id = `cellAI-${i}${j}`;
       spanElement.innerHTML = boardTwo[i][j];
+      spanElement.classList.add('board-cell');
       divElement.appendChild(spanElement);
     }
-    computerBoard.appendChild(divElement);
+    cBoard.appendChild(divElement);
   }
-  playerBoard.addEventListener('click', () => {
+  cBoard.addEventListener('click', () => {
     const move = Number(event.target.id.slice(5));
     gameFlow(move);
   });
+  board.appendChild(pBoard);
+  board.appendChild(cBoard);
 };
 
 const gameFlow = (move) => {
-  render(main.getBoardOne().getBoard(), main.getBoardTwo().getBoard());
   if (main.makeMove(move)) {
+    render(main.getBoardOne().getBoard(), main.getBoardTwo().getBoard());
     if (main.getBoardTwo().IsAllShipsSunk()) {
       endGame(main.getPlayerOne());
     }
   } else {
-    main.AIMove(main.getBoardOne().getBoard());
-		render(main.getBoardOne().getBoard(), main.getBoardTwo().getBoard());
+    render(main.getBoardOne().getBoard(), main.getBoardTwo().getBoard());
+    let check = true;
+    while (check) {
+      check = main.AIMove(main.getBoardOne().getBoard());
+      render(main.getBoardOne().getBoard(), main.getBoardTwo().getBoard());
+      main.sleep2();
+    }
+    render(main.getBoardOne().getBoard(), main.getBoardTwo().getBoard());
     if (main.getBoardOne().IsAllShipsSunk()) {
       endGame(main.getPlayerTwo());
     }

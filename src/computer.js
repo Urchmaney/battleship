@@ -15,16 +15,9 @@ const Computer = () => {
 
   const makeAIMove = (board) => {
     const move = generateAIMove(board);
-    // computer.makeMove(move, board);
     return board.receiveAttack(move);
   };
-
-  // computer.makeMove = makeAIMove;
   return Object.assign(computer, { makeAIMove });
-  // return computer;
-  // return {
-  //   makeAIMove,
-  // };
 };
 
 export default Computer;
