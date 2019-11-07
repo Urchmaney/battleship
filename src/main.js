@@ -7,8 +7,8 @@ let playerTwo = {};
 let gameBoardOne = {};
 let gameBoardTwo = {};
 
-const startGame = () => {
-  playerOne = Player('');
+const startGame = (name) => {
+  playerOne = Player(name);
   playerTwo = Computer();
   gameBoardOne = GameBoard();
   gameBoardOne.createShips();
@@ -16,14 +16,19 @@ const startGame = () => {
   gameBoardTwo.createShips();
 };
 
+const makeMove = (move) => playerOne.makeMove(move, gameBoardTwo);
+
 const getBoardOne = () => gameBoardOne;
 
 const getBoardTwo = () => gameBoardTwo;
 
 const getPlayerOne = () => playerOne;
 
+const getPlayerTwo = () => playerTwo;
+
 const AIMove = () => {
-  playerTwo.makeMove(gameBoardOne);
+  playerTwo.makeAIMove(gameBoardOne);
+  // playerTwo.makeMove(gameBoardOne);
 };
 
 export {
@@ -32,4 +37,6 @@ export {
   getBoardTwo,
   getPlayerOne,
   AIMove,
+  makeMove,
+  getPlayerTwo,
 };
