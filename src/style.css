@@ -8,11 +8,18 @@ body{
     background-color: aqua;
 }
 
+.ships{
+    background-color: red;
+    position: absolute;
+    border: 1px solid gray;
+}
+
 #boards{
     padding-left: 25%;
 }
 
 #playerBoard{
+    position: relative;
     width : 300px;
     display: inline-block;
 }
@@ -25,8 +32,8 @@ body{
 
 .board-cell{
     display: inline-block;
-    width : 20px;
-    height : 20px;
+    width : 30px;
+    height : 30px;
     border: 1px solid gray;
     text-align: center;
     background-color: white;

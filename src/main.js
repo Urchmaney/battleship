@@ -16,22 +16,6 @@ const startGame = (name) => {
   gameBoardTwo.createShips();
 };
 
-// let i = 0;
-// const sleep2 = () => {
-//   if (i < 1) {
-//     i += 1;
-//     // Continue the loop in 3s
-//     setTimeout(sleep2, 7000);
-//   }
-// };
-const sleep = (milliseconds) => {
-  const start = new Date().getTime();
-  for (let i = 0; i < 1e7; i += 1) {
-    if ((new Date().getTime() - start) > milliseconds) {
-      break;
-    }
-  }
-};
 
 const makeMove = (move) => playerOne.makeMove(move, gameBoardTwo);
 
@@ -53,6 +37,4 @@ export {
   AIMove,
   makeMove,
   getPlayerTwo,
-  sleep,
-  // sleep2,
 };

@@ -14,14 +14,14 @@ const GameBoard = () => {
     ['*', '*', '*', '*', '*', '*', '*', '*', '*', '*'],
   ];
 
-
+  const getShips = () => ships;
   const createShips = () => {
     ships.push(Ship(1));
     ships[ships.length - 1].setCoordinate([14]);
     ships.push(Ship(1));
     ships[ships.length - 1].setCoordinate([88]);
     ships.push(Ship(1));
-    ships[ships.length - 1].setCoordinate([1]);
+    ships[ships.length - 1].setCoordinate([20]);
     ships.push(Ship(1));
     ships[ships.length - 1].setCoordinate([99]);
     ships.push(Ship(2));
@@ -31,11 +31,11 @@ const GameBoard = () => {
     ships.push(Ship(2));
     ships[ships.length - 1].setCoordinate([51, 61]);
     ships.push(Ship(3));
-    ships[ships.length - 1].setCoordinate([22, 23, 24]);
+    ships[ships.length - 1].setCoordinate([20, 21, 22]);
     ships.push(Ship(3));
     ships[ships.length - 1].setCoordinate([91, 92, 93]);
     ships.push(Ship(4));
-    ships[ships.length - 1].setCoordinate([45, 46, 47, 48]);
+    ships[ships.length - 1].setCoordinate([80, 81, 82, 83]);
   };
   const markOnBoard = (coordinate, option) => {
     board[Math.floor(coordinate / 10)][Math.floor(coordinate % 10)] = option ? 'X' : '.';
@@ -64,7 +64,7 @@ const GameBoard = () => {
     return true;
   };
   return {
-    getBoard, receiveAttack, SetShipsToBoard, createShips, IsAllShipsSunk,
+    getBoard, receiveAttack, SetShipsToBoard, createShips, IsAllShipsSunk, getShips,
   };
 };
 export default GameBoard;

@@ -1,13 +1,40 @@
 import * as main from './main';
 import './style.css';
 
+// const allowDrop = (ev) => {
+//   ev.preventDefault();
+// };
+
+// const drag = (ev) => {
+//   ev.dataTransfer.setData('text', ev.target.id);
+// };
+
+// const drop = (ev) => {
+//   ev.preventDefault();
+//   const data = ev.dataTransfer.getData('text');
+//   ev.target.appendChild(document.getElementById(data));
+// };
 
 const endGame = (player) => {
   const board = document.getElementById('boards');
   board.innerHTML = `${player.getName()} has won !!!`;
 };
 
-
+const renderEmptyBoard = () => {
+  const pBoard = document.getElementById('playerBoard');
+  pBoard.innerHTML = '';
+  for (let i = 0; i < 10; i += 1) {
+    const divElement = document.createElement('div');
+    divElement.style.height = '30px';
+    for (let j = 0; j < 10; j += 1) {
+      const spanElement = document.createElement('span');
+      spanElement.id = `cellE-${i}${j}`;
+      spanElement.classList.add('board-cell');
+      divElement.appendChild(spanElement);
+    }
+    pBoard.appendChild(divElement);
+  }
+};
 const renderPlayerBoard = (board) => {
   const pBoard = document.getElementById('playerBoard');
   pBoard.innerHTML = '';
@@ -16,6 +43,7 @@ const renderPlayerBoard = (board) => {
     for (let j = 0; j < 10; j += 1) {
       const spanElement = document.createElement('span');
       spanElement.innerHTML = board[i][j];
+      spanElement.id = `cellP-${i}${j}`;
       spanElement.classList.add('board-cell');
       divElement.appendChild(spanElement);
     }
@@ -23,6 +51,45 @@ const renderPlayerBoard = (board) => {
   }
 };
 
+const getShips = () => {
+  const ships = main.getBoardOne().getShips();
+  const playerBoard = document.getElementById('playerBoard');
+  ships.forEach((ship) => {
+    const divElement = document.createElement('div');
+    // divElement.setAttribute('draggable', 'true');
+    // playerBoard.setAttribute('ondrop', 'drop(event)');
+    // playerBoard.setAttribute('ondragover', 'allowDrop(event)');
+    divElement.classList.add('ships');
+    for (let i = 0; i < ship.getCoordinates().length; i += 1) {
+      const temp = Math.floor(ship.getCoordinates()[i] / 10);
+      const tempTwo = Math.floor(ship.getCoordinates()[i] % 10);
+      const curr = Math.floor(ship.getCoordinates()[i + 1] / 10);
+      const currTwo = Math.floor(ship.getCoordinates()[i + 1] % 10);
+      if (tempTwo === currTwo) {
+        divElement.style.height = `${30 * ship.getCoordinates().length}px`;
+        divElement.style.width = '30px';
+        divElement.style.left = `${30 * tempTwo}px`;
+        divElement.style.top = `${30 * temp}px`;
+      } else if (temp === curr) {
+        divElement.style.width = `${30 * ship.getCoordinates().length}px`;
+        divElement.style.height = '30px';
+        divElement.style.left = `${30 * tempTwo}px`;
+        divElement.style.top = `${30 * temp}px`;
+        if (ship.getCoordinates()[i] === 45) {
+          console.log(`${30 * tempTwo}px`);
+          console.log(`${30 * temp}px`);
+          console.log(tempTwo);
+        }
+      }
+    } if (ship.getCoordinates().length === 1) {
+      divElement.style.height = '30px';
+      divElement.style.width = '30px';
+      divElement.style.left = `${30 * Math.floor(ship.getCoordinates()[0] % 10)}px`;
+      divElement.style.top = `${30 * Math.floor(ship.getCoordinates()[0] / 10)}px`;
+    }
+    playerBoard.appendChild(divElement);
+  });
+};
 const renderCompBoard = (board) => {
   const boards = document.getElementById('boards');
   const cBoard = document.createElement('div');
@@ -65,94 +132,27 @@ const renderCompBoard = (board) => {
   boards.appendChild(cBoard);
 };
 
-// const render = (boardOne, boardTwo) => {
-//   // const playerBoard = document.getElementById('playerBoard');
-//   const board = document.getElementById('boards');
-//   board.innerHTML = '';
-//   // playerBoard.innerHTML = '';
-//   const pBoard = document.createElement('div');
-//   pBoard.id = 'playerBoard';
-//   for (let i = 0; i < 10; i += 1) {
-//     const divElement = document.createElement('div');
-//     for (let j = 0; j < 10; j += 1) {
-//       const spanElement = document.createElement('span');
-//       //spanElement.id = `cell-${i}${j}`;
-//       spanElement.innerHTML = boardOne[i][j];
-//       spanElement.classList.add('board-cell');
-//       divElement.appendChild(spanElement);
-//     }
-//     pBoard.appendChild(divElement);
-//   }
-//   // const computerBoard = document.getElementById('computerBoard');
-//   const cBoard = document.createElement('div');
-//   cBoard.id = 'computerBoard';
-//   // computerBoard.innerHTML = '';
-//   for (let i = 0; i < 10; i += 1) {
-//     const divElement = document.createElement('div');
-//     for (let j = 0; j < 10; j += 1) {
-//       const spanElement = document.createElement('span');
-//       spanElement.id = `cell-${i}${j}`;
-//       spanElement.innerHTML = boardTwo[i][j];
-//       spanElement.classList.add('board-cell');
-//       divElement.appendChild(spanElement);
-//     }
-//     cBoard.appendChild(divElement);
-//   }
-//   cBoard.addEventListener('click', () => {
-//     const move = Number(event.target.id.slice(5));
-//     gameFlow(move);
-//   });
-//   board.appendChild(pBoard);
-//   board.appendChild(cBoard);
-// };
-
-// const gameFlow = (move) => {
-//   if (main.makeMove(move)) {
-//     render(main.getBoardOne().getBoard(), main.getBoardTwo().getBoard());
-//     if (main.getBoardTwo().IsAllShipsSunk()) {
-//       endGame(main.getPlayerOne());
-//     }
-//   } else {
-//     render(main.getBoardOne().getBoard(), main.getBoardTwo().getBoard());
-//     const cBoard = document.getElementById('computerBoard');
-//     cBoard.classList.add('disableddiv');
-//     setTimeout(() => {
-//       let check = true;
-//       const i = setInterval(() => {
-//         const coard = document.getElementById('computerBoard');
-//         coard.classList.add('disableddiv');
-//         check = main.AIMove(main.getBoardOne().getBoard());
-//         render(main.getBoardOne().getBoard(), main.getBoardTwo().getBoard());
-//         coard.classList.add('disableddiv');
-//         if (!check) {
-//           clearInterval(i);
-//         }
-//       }, 2000);
-//       // while (check) {
-//       //   check = main.AIMove(main.getBoardOne().getBoard());
-//       //   render(main.getBoardOne().getBoard(), main.getBoardTwo().getBoard());
-//       // }
-//       render(main.getBoardOne().getBoard(), main.getBoardTwo().getBoard());
-//       if (main.getBoardOne().IsAllShipsSunk()) {
-//         endGame(main.getPlayerTwo());
-//       }
-//     }, 2000);
-//   }
-// };
-
 const displayPlayersInfo = () => {
   const playerInfo = document.getElementById('playerInfo');
   const textInput = document.createElement('input');
   const submitBtn = document.createElement('button');
-  submitBtn.innerHTML = 'Start Game';
+  submitBtn.innerHTML = 'Set Board';
   textInput.setAttribute('placeholder', 'Enter your name');
   playerInfo.appendChild(textInput);
   playerInfo.appendChild(submitBtn);
   submitBtn.addEventListener('click', () => {
     main.startGame(textInput.value);
-    // render(main.getBoardOne().getBoard(), main.getBoardTwo().getBoard());
-    renderPlayerBoard(main.getBoardOne().getBoard());
-    renderCompBoard(main.getBoardTwo().getBoard());
+    renderEmptyBoard();
+    getShips();
+    const startGameBtn = document.createElement('button');
+    startGameBtn.innerHTML = 'Start Game';
+    playerInfo.appendChild(startGameBtn);
+    startGameBtn.addEventListener('click', () => {
+      document.getElementById('playerBoard').innerHTML = '';
+      renderPlayerBoard(main.getBoardOne().getBoard());
+      renderCompBoard(main.getBoardTwo().getBoard());
+      playerInfo.removeChild(startGameBtn);
+    });
   });
 };
 
