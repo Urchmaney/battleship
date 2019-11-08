@@ -24,14 +24,14 @@ const startGame = (name) => {
 //     setTimeout(sleep2, 7000);
 //   }
 // };
-// const sleep = (milliseconds) => {
-//   const start = new Date().getTime();
-//   for (let i = 0; i < 1e7; i += 1) {
-//     if ((new Date().getTime() - start) > milliseconds) {
-//       break;
-//     }
-//   }
-// };
+const sleep = (milliseconds) => {
+  const start = new Date().getTime();
+  for (let i = 0; i < 1e7; i += 1) {
+    if ((new Date().getTime() - start) > milliseconds) {
+      break;
+    }
+  }
+};
 
 const makeMove = (move) => playerOne.makeMove(move, gameBoardTwo);
 
@@ -53,6 +53,6 @@ export {
   AIMove,
   makeMove,
   getPlayerTwo,
-  // sleep,
+  sleep,
   // sleep2,
 };

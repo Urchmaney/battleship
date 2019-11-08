@@ -31,3 +31,8 @@ body{
     text-align: center;
     background-color: white;
 }
+
+.disableddiv {
+    pointer-events: none;
+    opacity: 0.4;
+}

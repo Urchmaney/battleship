@@ -7,6 +7,32 @@ const endGame = (player) => {
   board.innerHTML = `${player.getName()} has won !!!`;
 };
 
+const renderCompBoard = (board) => {
+  const cBoard = document.createElement('div');
+  cBoard.id = 'computerBoard';
+  for (let i = 0; i < 10; i += 1) {
+    const divElement = document.createElement('div');
+    for (let j = 0; j < 10; j += 1) {
+      const spanElement = document.createElement('span');
+      spanElement.id = `cell-${i}${j}`;
+      spanElement.innerHTML = board[i][j];
+      spanElement.classList.add('board-cell');
+      divElement.appendChild(spanElement);
+    }
+    cBoard.appendChild(divElement);
+  }
+  cBoard.addEventListener('click', (event) => {
+    const spanId = event.target.id;
+    const move = Number(spanId.slice(5));
+    gameFlow(move);
+  });
+  board.appendChild(cBoard);
+};
+
+const pPlay = () => {
+  
+}
+
 const render = (boardOne, boardTwo) => {
   // const playerBoard = document.getElementById('playerBoard');
   const board = document.getElementById('boards');
@@ -56,16 +82,29 @@ const gameFlow = (move) => {
     }
   } else {
     render(main.getBoardOne().getBoard(), main.getBoardTwo().getBoard());
-    let check = true;
-    while (check) {
-      check = main.AIMove(main.getBoardOne().getBoard());
+    const cBoard = document.getElementById('computerBoard');
+    cBoard.classList.add('disableddiv');
+    setTimeout(() => {
+      let check = true;
+      const i = setInterval(() => {
+        const coard = document.getElementById('computerBoard');
+        coard.classList.add('disableddiv');
+        check = main.AIMove(main.getBoardOne().getBoard());
+        render(main.getBoardOne().getBoard(), main.getBoardTwo().getBoard());
+        coard.classList.add('disableddiv');
+        if (!check) {
+          clearInterval(i);
+        }
+      }, 2000);
+      // while (check) {
+      //   check = main.AIMove(main.getBoardOne().getBoard());
+      //   render(main.getBoardOne().getBoard(), main.getBoardTwo().getBoard());
+      // }
       render(main.getBoardOne().getBoard(), main.getBoardTwo().getBoard());
-      // main.sleep2();
-    }
-    render(main.getBoardOne().getBoard(), main.getBoardTwo().getBoard());
-    if (main.getBoardOne().IsAllShipsSunk()) {
-      endGame(main.getPlayerTwo());
-    }
+      if (main.getBoardOne().IsAllShipsSunk()) {
+        endGame(main.getPlayerTwo());
+      }
+    }, 2000);
   }
 };
 
