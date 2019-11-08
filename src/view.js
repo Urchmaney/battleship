@@ -75,11 +75,6 @@ const getShips = () => {
         divElement.style.height = '30px';
         divElement.style.left = `${30 * tempTwo}px`;
         divElement.style.top = `${30 * temp}px`;
-        if (ship.getCoordinates()[i] === 45) {
-          console.log(`${30 * tempTwo}px`);
-          console.log(`${30 * temp}px`);
-          console.log(tempTwo);
-        }
       }
     } if (ship.getCoordinates().length === 1) {
       divElement.style.height = '30px';
