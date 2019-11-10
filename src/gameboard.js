@@ -21,7 +21,7 @@ const GameBoard = () => {
     ships.push(Ship(1));
     ships[ships.length - 1].setCoordinate([88]);
     ships.push(Ship(1));
-    ships[ships.length - 1].setCoordinate([20]);
+    ships[ships.length - 1].setCoordinate([56]);
     ships.push(Ship(1));
     ships[ships.length - 1].setCoordinate([99]);
     ships.push(Ship(2));

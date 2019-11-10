@@ -1,19 +1,26 @@
 import * as main from './main';
 import './style.css';
 
-// const allowDrop = (ev) => {
-//   ev.preventDefault();
-// };
+const allowDrop = (ev) => {
+  const newEv = ev;
+  newEv.preventDefault();
+  newEv.dataTransfer.dropEffect = 'move';
+};
 
-// const drag = (ev) => {
-//   ev.dataTransfer.setData('text', ev.target.id);
-// };
+const drag = (ev) => {
+  const newEv = ev;
+  newEv.dataTransfer.setData('text', ev.target.id);
+  newEv.dataTransfer.effectAllowed = 'move';
+};
 
-// const drop = (ev) => {
-//   ev.preventDefault();
-//   const data = ev.dataTransfer.getData('text');
-//   ev.target.appendChild(document.getElementById(data));
-// };
+const drop = (ev) => {
+  ev.preventDefault();
+  const id = ev.dataTransfer.getData('text');
+  const ele = document.getElementById(id);
+  const oId = ev.target.id.slice(6);
+  ele.style.top = `${Number(oId[0]) * 30}px`;
+  ele.style.left = `${Number(oId[1]) * 30}px`;
+};
 
 const endGame = (player) => {
   const board = document.getElementById('boards');
@@ -54,35 +61,67 @@ const renderPlayerBoard = (board) => {
 const getShips = () => {
   const ships = main.getBoardOne().getShips();
   const playerBoard = document.getElementById('playerBoard');
-  ships.forEach((ship) => {
+  ships.forEach((ship, index) => {
     const divElement = document.createElement('div');
-    // divElement.setAttribute('draggable', 'true');
-    // playerBoard.setAttribute('ondrop', 'drop(event)');
-    // playerBoard.setAttribute('ondragover', 'allowDrop(event)');
+    divElement.setAttribute('draggable', 'true');
+    divElement.addEventListener('dragstart', drag);
+    divElement.id = `ship${index}`;
+    playerBoard.addEventListener('dragover', allowDrop);
     divElement.classList.add('ships');
-    for (let i = 0; i < ship.getCoordinates().length; i += 1) {
-      const temp = Math.floor(ship.getCoordinates()[i] / 10);
-      const tempTwo = Math.floor(ship.getCoordinates()[i] % 10);
-      const curr = Math.floor(ship.getCoordinates()[i + 1] / 10);
-      const currTwo = Math.floor(ship.getCoordinates()[i + 1] % 10);
-      if (tempTwo === currTwo) {
-        divElement.style.height = `${30 * ship.getCoordinates().length}px`;
-        divElement.style.width = '30px';
-        divElement.style.left = `${30 * tempTwo}px`;
-        divElement.style.top = `${30 * temp}px`;
-      } else if (temp === curr) {
-        divElement.style.width = `${30 * ship.getCoordinates().length}px`;
-        divElement.style.height = '30px';
-        divElement.style.left = `${30 * tempTwo}px`;
-        divElement.style.top = `${30 * temp}px`;
+    let left = 0;
+    let top = 0;
+    let width = 0;
+    let height = 0;
+    const coord = ship.getCoordinates();
+    if (coord.length === 1) {
+      top = Math.floor(coord / 10) * 30;
+      left = (coord % 10) * 30;
+      width = 30;
+      height = 30;
+    } else {
+      const first = coord[0];
+      const second = coord[1];
+      top = Math.floor(first / 10) * 30;
+      left = (first % 10) * 30;
+      if (Math.floor(first / 10) === Math.floor(second / 10)) {
+        width = 30 * coord.length;
+        height = 30;
+      } else {
+        height = 30 * coord.length;
+        width = 30;
       }
-    } if (ship.getCoordinates().length === 1) {
-      divElement.style.height = '30px';
-      divElement.style.width = '30px';
-      divElement.style.left = `${30 * Math.floor(ship.getCoordinates()[0] % 10)}px`;
-      divElement.style.top = `${30 * Math.floor(ship.getCoordinates()[0] / 10)}px`;
     }
+    divElement.style.height = `${height}px`;
+    divElement.style.width = `${width}px`;
+    divElement.style.left = `${left}px`;
+    divElement.style.top = `${top}px`;
+
+    //   for (let i = 0; i < ship.getCoordinates().length; i += 1) {
+    //     const temp = Math.floor(ship.getCoordinates()[i] / 10);
+    //     const tempTwo = Math.floor(ship.getCoordinates()[i] % 10);
+    //     const curr = Math.floor(ship.getCoordinates()[i + 1] / 10);
+    //     const currTwo = Math.floor(ship.getCoordinates()[i + 1] % 10);
+    //     if (tempTwo === currTwo) {
+    //       divElement.style.height = `${30 * ship.getCoordinates().length}px`;
+    //       divElement.style.width = '30px';
+    //       divElement.style.left = `${30 * tempTwo}px`;
+    //       divElement.style.top = `${30 * temp}px`;
+    //     } else if (temp === curr) {
+    //       divElement.style.width = `${30 * ship.getCoordinates().length}px`;
+    //       divElement.style.height = '30px';
+    //       divElement.style.left = `${30 * tempTwo}px`;
+    //       divElement.style.top = `${30 * temp}px`;
+    //     }
+    //   } if (ship.getCoordinates().length === 1) {
+    //     divElement.style.height = '30px';
+    //     divElement.style.width = '30px';
+    //     divElement.style.left = `${30 * Math.floor(ship.getCoordinates()[0] % 10)}px`;
+    //     divElement.style.top = `${30 * Math.floor(ship.getCoordinates()[0] / 10)}px`;
+    //   }
+    //   playerBoard.appendChild(divElement);
+    // });
     playerBoard.appendChild(divElement);
+    playerBoard.addEventListener('drop', drop);
   });
 };
 const renderCompBoard = (board) => {
