@@ -26,7 +26,7 @@ const drop = (ev) => {
 
 const endGame = (player) => {
   const board = document.getElementById('boards');
-  board.innerHTML = `${player.getName()} has won !!!`;
+  board.innerHTML = `<h3>${player.getName()} has won !!!</h3>`;
 };
 
 const renderEmptyBoard = () => {
@@ -154,7 +154,9 @@ const displayPlayersInfo = () => {
   textInput.setAttribute('placeholder', 'Enter your name');
   playerInfo.appendChild(textInput);
   playerInfo.appendChild(submitBtn);
+  playerInfo.classList.add('playerInfo');
   submitBtn.addEventListener('click', () => {
+    playerInfo.innerHTML = '';
     main.startGame(textInput.value);
     renderEmptyBoard();
     getShips();

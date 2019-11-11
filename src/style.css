@@ -5,9 +5,16 @@
 }
 
 body{
-    background-color: aqua;
+    background-color: lightgray;
 }
 
+h2, .playerInfo{
+    text-align: center;
+    padding: 10px;
+}
+h3{
+    margin-left: 230px;
+}
 .ships{
     background-color: red;
     position: absolute;
