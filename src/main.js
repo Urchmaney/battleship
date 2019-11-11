@@ -17,7 +17,7 @@ const startGame = (name) => {
 };
 
 
-const makeMove = (move) => playerOne.makeMove(move, gameBoardTwo);
+const makeMove = move => playerOne.makeMove(move, gameBoardTwo);
 
 const getBoardOne = () => gameBoardOne;
 
