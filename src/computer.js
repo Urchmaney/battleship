@@ -19,20 +19,24 @@ const Computer = () => {
     let last = null;
     if (hits.length > 0) {
       last = hits[hits.length - 1];
-      if (board.getBoard()[Math.floor(last / 10)][last % 10] === 'X') {
-        if (!hits.includes(last + 1) && ((last % 10) < 9) && (board.getBoard()[Math.floor((last + 1) / 10)][(last + 1) % 10] === '*')) {
-          move = last + 1;
-        } else if (!hits.includes(last - 1) && ((last % 10) > 0) && (board.getBoard()[Math.floor((last - 1) / 10)][(last - 1) % 10] === '*')) {
-          move = last - 1;
-        } else if (!hits.includes(last + 10) && ((last / 10) < 9) && (board.getBoard()[Math.floor((last + 10) / 10)][(last + 10) % 10] === '*')) {
-          move = last + 10;
-        } else if (!hits.includes(last - 10) && ((last / 10) > 0) && (board.getBoard()[Math.floor((last - 10) / 10)][(last - 10) % 10] === '*')) {
-          move = last - 10;
-        } else {
-          hits.pop();
-        }
-      } else {
+      if (board.getBoard()[Math.floor(last / 10)][last % 10] === '.') {
         hits.pop();
+      }
+      if (hits.length > 0) {
+        last = hits[hits.length - 1];
+        if (board.getBoard()[Math.floor(last / 10)][last % 10] === 'X') {
+          if (!hits.includes(last + 1) && ((last % 10) < 9) && (board.getBoard()[Math.floor((last + 1) / 10)][(last + 1) % 10] === '*')) {
+            move = last + 1;
+          } else if (!hits.includes(last - 1) && ((last % 10) > 0) && (board.getBoard()[Math.floor((last - 1) / 10)][(last - 1) % 10] === '*')) {
+            move = last - 1;
+          } else if (!hits.includes(last + 10) && ((last / 10) < 9) && (board.getBoard()[Math.floor((last + 10) / 10)][(last + 10) % 10] === '*')) {
+            move = last + 10;
+          } else if (!hits.includes(last - 10) && ((last / 10) > 0) && (board.getBoard()[Math.floor((last - 10) / 10)][(last - 10) % 10] === '*')) {
+            move = last - 10;
+          } else {
+            hits.pop();
+          }
+        }
       }
     }
     if (move === null) {

@@ -121,6 +121,9 @@ const renderCompBoard = (board) => {
     const move = Number(spanId.slice(5));
     const hit = main.makeMove(move);
     document.getElementById(spanId).innerHTML = hit ? 'X' : '.';
+    if (main.getBoardTwo().IsAllShipsSunk()) {
+      endGame(main.getPlayerOne());
+    }
     if (!hit) {
       cBoard.classList.add('disableddiv');
       setTimeout(() => {
