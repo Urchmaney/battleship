@@ -16,8 +16,10 @@ const drag = (ev) => {
 const drop = (ev) => {
   ev.preventDefault();
   const id = ev.dataTransfer.getData('text');
+  const coord = Number(id.slice(4));
   const ele = document.getElementById(id);
   const oId = ev.target.id.slice(6);
+  main.getBoardOne().changeShipCoordinate(coord, Number(oId));
   ele.style.top = `${Number(oId[0]) * 30}px`;
   ele.style.left = `${Number(oId[1]) * 30}px`;
 };
@@ -61,11 +63,10 @@ const renderPlayerBoard = (board) => {
 const getShips = () => {
   const ships = main.getBoardOne().getShips();
   const playerBoard = document.getElementById('playerBoard');
-  ships.forEach((ship, index) => {
+  ships.forEach((ship) => {
     const divElement = document.createElement('div');
     divElement.setAttribute('draggable', 'true');
     divElement.addEventListener('dragstart', drag);
-    divElement.id = `ship${index}`;
     playerBoard.addEventListener('dragover', allowDrop);
     divElement.classList.add('ships');
     let left = 0;
@@ -91,6 +92,7 @@ const getShips = () => {
         width = 30;
       }
     }
+    divElement.id = `ship${Math.floor(coord[0] / 10)}${coord[0] % 10}`;
     divElement.style.height = `${height}px`;
     divElement.style.width = `${width}px`;
     divElement.style.left = `${left}px`;

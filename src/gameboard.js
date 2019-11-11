@@ -1,7 +1,7 @@
 import Ship from './ship';
 
 const GameBoard = () => {
-  let ships = [];
+  const ships = [];
   const board = [['* ', '* ', '*', '*', '*', '*', '*', '*', '*', '*'],
     ['*', '*', '*', '*', '*', '*', '*', '*', '*', '*'],
     ['*', '*', '*', '*', '*', '*', '*', '*', '*', '*'],
@@ -37,9 +37,30 @@ const GameBoard = () => {
     ships.push(Ship(4));
     ships[ships.length - 1].setCoordinate([80, 81, 82, 83]);
   };
+
   const markOnBoard = (coordinate, option) => {
     board[Math.floor(coordinate / 10)][Math.floor(coordinate % 10)] = option ? 'X' : '.';
     return option;
+  };
+
+  const changeShipCoordinate = (oldCoord, newCoord) => {
+    ships.forEach((ship) => {
+      const shipCoord = ship.getCoordinates();
+      if (shipCoord.includes(oldCoord)) {
+        const toSet = [newCoord];
+        if (shipCoord.length !== 1) {
+          const wayToAdd = Math.floor(shipCoord[0] / 10) === Math.floor(shipCoord[1] / 10);
+          for (let i = 1; i < shipCoord.length; i += 1) {
+            if (wayToAdd) {
+              toSet.push(newCoord + i);
+            } else {
+              toSet.push(newCoord + (i * 10));
+            }
+          }
+          ship.setCoordinate(toSet);
+        }
+      }
+    });
   };
 
   const checkIfHit = (coord) => {
@@ -48,9 +69,7 @@ const GameBoard = () => {
     }
     return false;
   };
-  const SetShipsToBoard = (shipsArray) => {
-    ships = shipsArray;
-  };
+
   const getBoard = () => board;
 
   const receiveAttack = (coord) => markOnBoard(coord, checkIfHit(coord));
@@ -64,7 +83,7 @@ const GameBoard = () => {
     return true;
   };
   return {
-    getBoard, receiveAttack, SetShipsToBoard, createShips, IsAllShipsSunk, getShips,
+    getBoard, receiveAttack, changeShipCoordinate, createShips, IsAllShipsSunk, getShips,
   };
 };
 export default GameBoard;
