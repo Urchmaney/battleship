@@ -97,31 +97,6 @@ const getShips = () => {
     divElement.style.width = `${width}px`;
     divElement.style.left = `${left}px`;
     divElement.style.top = `${top}px`;
-
-    //   for (let i = 0; i < ship.getCoordinates().length; i += 1) {
-    //     const temp = Math.floor(ship.getCoordinates()[i] / 10);
-    //     const tempTwo = Math.floor(ship.getCoordinates()[i] % 10);
-    //     const curr = Math.floor(ship.getCoordinates()[i + 1] / 10);
-    //     const currTwo = Math.floor(ship.getCoordinates()[i + 1] % 10);
-    //     if (tempTwo === currTwo) {
-    //       divElement.style.height = `${30 * ship.getCoordinates().length}px`;
-    //       divElement.style.width = '30px';
-    //       divElement.style.left = `${30 * tempTwo}px`;
-    //       divElement.style.top = `${30 * temp}px`;
-    //     } else if (temp === curr) {
-    //       divElement.style.width = `${30 * ship.getCoordinates().length}px`;
-    //       divElement.style.height = '30px';
-    //       divElement.style.left = `${30 * tempTwo}px`;
-    //       divElement.style.top = `${30 * temp}px`;
-    //     }
-    //   } if (ship.getCoordinates().length === 1) {
-    //     divElement.style.height = '30px';
-    //     divElement.style.width = '30px';
-    //     divElement.style.left = `${30 * Math.floor(ship.getCoordinates()[0] % 10)}px`;
-    //     divElement.style.top = `${30 * Math.floor(ship.getCoordinates()[0] / 10)}px`;
-    //   }
-    //   playerBoard.appendChild(divElement);
-    // });
     playerBoard.appendChild(divElement);
     playerBoard.addEventListener('drop', drop);
   });
