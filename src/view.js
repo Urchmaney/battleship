@@ -47,6 +47,9 @@ const renderEmptyBoard = () => {
 const renderPlayerBoard = (board) => {
   const pBoard = document.getElementById('playerBoard');
   pBoard.innerHTML = '';
+  const pName = document.createElement('div');
+  pName.innerHTML = `${main.getPlayerOne().getName()}`;
+  pBoard.appendChild(pName);
   for (let i = 0; i < 10; i += 1) {
     const divElement = document.createElement('div');
     for (let j = 0; j < 10; j += 1) {
@@ -105,6 +108,9 @@ const renderCompBoard = (board) => {
   const boards = document.getElementById('boards');
   const cBoard = document.createElement('div');
   cBoard.id = 'computerBoard';
+  const cName = document.createElement('div');
+  cName.innerHTML = 'Computer';
+  cBoard.appendChild(cName);
   for (let i = 0; i < 10; i += 1) {
     const divElement = document.createElement('div');
     for (let j = 0; j < 10; j += 1) {
@@ -135,12 +141,12 @@ const renderCompBoard = (board) => {
             clearInterval(i);
             cBoard.classList.remove('disableddiv');
           }
-        }, 2000);
+        }, 500);
         renderPlayerBoard(main.getBoardOne().getBoard());
         if (main.getBoardOne().IsAllShipsSunk()) {
           endGame(main.getPlayerTwo());
         }
-      }, 2000);
+      }, 500);
     }
   });
   boards.appendChild(cBoard);
@@ -164,7 +170,8 @@ const displayPlayersInfo = () => {
     startGameBtn.innerHTML = 'Start Game';
     playerInfo.appendChild(startGameBtn);
     startGameBtn.addEventListener('click', () => {
-      document.getElementById('playerBoard').innerHTML = '';
+      const playerBoard = document.getElementById('playerBoard');
+      playerBoard.innerHTML = '';
       renderPlayerBoard(main.getBoardOne().getBoard());
       renderCompBoard(main.getBoardTwo().getBoard());
       playerInfo.removeChild(startGameBtn);
