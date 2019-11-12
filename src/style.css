@@ -1,0 +1,52 @@
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body{
+    background-color: lightgray;
+}
+
+h2, .playerInfo{
+    text-align: center;
+    padding: 10px;
+}
+h3{
+    margin-left: 230px;
+}
+.ships{
+    background-color: red;
+    position: absolute;
+    border: 1px solid gray;
+}
+
+#boards{
+    padding-left: 25%;
+}
+
+#playerBoard{
+    position: relative;
+    width: 300px;
+    display: inline-block;
+}
+
+#computerBoard{
+    width : 300px;
+    display: inline-block;
+    margin-left: 50px;
+}
+
+.board-cell{
+    display: inline-block;
+    width : 30px;
+    height : 30px;
+    border: 1px solid gray;
+    text-align: center;
+    background-color: white;
+}
+
+.disableddiv {
+    pointer-events: none;
+    opacity: 0.4;
+}
