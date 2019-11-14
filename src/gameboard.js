@@ -15,27 +15,22 @@ const GameBoard = () => {
   ];
 
   const getShips = () => ships;
+
+  const createShip = (coords) => {
+    ships.push(Ship(coords));
+  };
+
   const createShips = () => {
-    ships.push(Ship(1));
-    ships[ships.length - 1].setCoordinate([14]);
-    ships.push(Ship(1));
-    ships[ships.length - 1].setCoordinate([88]);
-    ships.push(Ship(1));
-    ships[ships.length - 1].setCoordinate([56]);
-    ships.push(Ship(1));
-    ships[ships.length - 1].setCoordinate([99]);
-    ships.push(Ship(2));
-    ships[ships.length - 1].setCoordinate([0, 10]);
-    ships.push(Ship(2));
-    ships[ships.length - 1].setCoordinate([66, 67]);
-    ships.push(Ship(2));
-    ships[ships.length - 1].setCoordinate([51, 61]);
-    ships.push(Ship(3));
-    ships[ships.length - 1].setCoordinate([20, 21, 22]);
-    ships.push(Ship(3));
-    ships[ships.length - 1].setCoordinate([91, 92, 93]);
-    ships.push(Ship(4));
-    ships[ships.length - 1].setCoordinate([80, 81, 82, 83]);
+    createShip([14]);
+    createShip([88]);
+    createShip([56]);
+    createShip([99]);
+    createShip([0, 10]);
+    createShip([66, 67]);
+    createShip([51, 61]);
+    createShip([20, 21, 22]);
+    createShip([91, 92, 93]);
+    createShip([80, 81, 82, 83]);
   };
 
   const markOnBoard = (coordinate, option) => {
@@ -72,7 +67,7 @@ const GameBoard = () => {
 
   const getBoard = () => board;
 
-  const receiveAttack = coord => markOnBoard(coord, checkIfHit(coord));
+  const receiveAttack = (coord) => markOnBoard(coord, checkIfHit(coord));
 
   const IsAllShipsSunk = () => {
     for (let i = 0; i < ships.length; i += 1) {
