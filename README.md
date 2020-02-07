@@ -1,5 +1,7 @@
 # battleship
-Using javascript to implement the battleship game, also using jest as the testing framework.
+For this project, we have implemented the battleship game using JavaScript and jest as the testing framework.
+
+[Live Link](https://raw.githack.com/Urchmaney/battleship/battle-feature/dist/index.html)
 
 Used:
 - Javascript
@@ -7,7 +9,7 @@ Used:
 - Webpack
 - Babel
 
-#Instruction
+# Instruction
 - Load page and input a player name.
 - Click on the set Board button to set up board with drag and drop.
 - Click on start game to begin the game.
@@ -15,4 +17,3 @@ Used:
 ## Authors
 - Fatima Ahmed [http://github.com/fatymahmed]
 - Kingsley Uche [https://github.com/Urchmaney] <br>
-[Live Link](https://raw.githack.com/Urchmaney/battleship/battle-feature/dist/index.html)
