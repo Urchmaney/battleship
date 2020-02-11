@@ -15,5 +15,14 @@ Used:
 - Click on start game to begin the game.
 
 ## Authors
-- Fatima Ahmed [http://github.com/fatymahmed]
-- Kingsley Uche [https://github.com/Urchmaney] <br>
+
+👤 **Fatima Ahmed**
+
+- Github: [@githubhandle](https://github.com/fatymahmed)
+- Twitter: [@twitterhandle](https://twitter.com/fatymahmed)
+- Linkedin: [linkedin](https://www.linkedin.com/in/fatimahmed/)
+
+👤 **Kingsley Uche**
+
+- Github: [@githubhandle](https://github.com/Urchmaney)
+- Linkedin: [linkedin](https://www.linkedin.com/in/kingsley-uche/)
