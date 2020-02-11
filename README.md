@@ -10,9 +10,9 @@ Used:
 - Babel
 
 # Instruction
-- Load page and input a player name.
-- Click on the set Board button to set up board with drag and drop.
-- Click on start game to begin the game.
+- Enter player's name.
+- Click on the set Board button to set up the board with drag and drop.
+- Click on `start game` button to start the game.
 
 ## Authors
 
