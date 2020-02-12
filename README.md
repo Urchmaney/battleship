@@ -1,5 +1,5 @@
 # battleship
-For this project, we have implemented the battleship game using JavaScript and jest as the testing framework.
+The famous [battleship game](https://en.wikipedia.org/wiki/Battleship_(game)) built in JavaScript and jest as the testing framework.
 
 [Live Link](https://raw.githack.com/Urchmaney/battleship/battle-feature/dist/index.html)
 
