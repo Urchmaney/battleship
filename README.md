@@ -1,5 +1,5 @@
 # battleship
-The famous [battleship game](https://en.wikipedia.org/wiki/Battleship_(game)) built in JavaScript and jest as the testing framework.
+The famous [battleship game](https://en.wikipedia.org/wiki/Battleship_(game)) built in JavaScript and Jest as the testing framework.
 
 [Live Link](https://raw.githack.com/Urchmaney/battleship/battle-feature/dist/index.html)
 
@@ -9,9 +9,17 @@ Used:
 - Webpack
 - Babel
 
+![screenshot](./battleship.png)
+![screenshot](./Screenshot.png)
+
+### Future Features
+- Improve UI
+- Implement different difficulty modes
+- Create a 2 player option
+
 # Instruction
 - Enter player's name.
-- Click on the set Board button to set up the board with drag and drop.
+- Click on the Set Board button to set up the board with drag and drop.
 - Click on `start game` button to start the game.
 
 ## Authors
