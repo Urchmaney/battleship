@@ -8,8 +8,8 @@ const display = () => {
   const headerTxt = document.createElement('h1');
   const textInput = document.createElement('input');
   const submitBtn = document.createElement('button');
-  headerTxt.innerHTML = "Battleship. Let's Battle";
-  submitBtn.innerHTML = 'Set your ship';
+  headerTxt.innerHTML = "Battleship. Let's Battle.";
+  submitBtn.innerHTML = 'Set your ships.';
   textInput.setAttribute('placeholder', 'Enter your name');
   infoContainer.appendChild(headerTxt);
   infoContainer.appendChild(textInput);
