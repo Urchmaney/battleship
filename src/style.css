@@ -19,6 +19,7 @@ h3{
     background-color: red;
     position: absolute;
     border: 1px solid gray;
+    cursor: pointer;
 }
 
 #boards{
