@@ -71,8 +71,13 @@ const setShips = () => {
 const renderSetupBoard = () => {
   const mainDiv = document.getElementById('main');
   mainDiv.innerHTML = '';
+  const container = document.createElement('div');
   const pBoard = document.createElement('div');
+  const infoP = document.createElement('p');
+  infoP.innerHTML = 'Drag and drop your fleets. Lets WAR';
   pBoard.id = 'playerBoard';
+  pBoard.classList.add('board');
+  pBoard.classList.add('setup-board');
   pBoard.innerHTML = '';
   for (let i = 0; i < 10; i += 1) {
     const divElement = document.createElement('div');
@@ -86,12 +91,16 @@ const renderSetupBoard = () => {
     pBoard.appendChild(divElement);
   }
   const startGameBtn = document.createElement('button');
-  startGameBtn.innerHTML = 'Start Game';
+  startGameBtn.innerHTML = 'Go to WAR';
   startGameBtn.addEventListener('click', () => {
     renderPlayGround();
   });
-  mainDiv.appendChild(pBoard);
-  mainDiv.appendChild(startGameBtn);
+  container.classList.add('info-container');
+  infoP.classList.add('setup-board-info');
+  container.appendChild(pBoard);
+  container.appendChild(infoP);
+  container.appendChild(startGameBtn);
+  mainDiv.appendChild(container);
 };
 
 const display = () => {
