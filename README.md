@@ -1,7 +1,7 @@
 # battleship
 The famous [battleship game](https://en.wikipedia.org/wiki/Battleship_(game)) built in JavaScript and Jest as the testing framework.
 
-[Live Link](https://raw.githack.com/Urchmaney/battleship/battle-feature/dist/index.html)
+[Live Link](https://raw.githack.com/Urchmaney/battleship/master/dist/index.html)
 
 Used:
 - Javascript
