@@ -1,6 +1,7 @@
 import {
   AIMove, makeMove, getBoardTwo, getBoardOne, getPlayerOne, startGame,
 } from '../main';
+// eslint-disable-next-line import/no-cycle
 import setupPage from './setup';
 import Sound from '../sound';
 import '../style.css';
