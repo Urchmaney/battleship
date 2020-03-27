@@ -26,7 +26,7 @@ const endGame = (player) => {
   endP.style.display = 'block';
   endP.classList.add('tryP');
   endP.innerHTML = `${player.getName()} has won !!!`;
-  tryBtn.addEventListener('click', (event) => {
+  tryBtn.addEventListener('click', () => {
     startGame(player.getName());
     setupPage();
   });
