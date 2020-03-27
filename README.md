@@ -13,7 +13,6 @@ Used:
 ![screenshot](./Screenshot.png)
 
 ### Future Features
-- Improve UI
 - Implement different difficulty modes
 - Create a 2 player option
 
