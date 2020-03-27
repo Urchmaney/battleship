@@ -67,7 +67,7 @@ const GameBoard = () => {
 
   const getBoard = () => board;
 
-  const receiveAttack = (coord) => markOnBoard(coord, checkIfHit(coord));
+  const receiveAttack = coord => markOnBoard(coord, checkIfHit(coord));
 
   const IsAllShipsSunk = () => {
     for (let i = 0; i < ships.length; i += 1) {

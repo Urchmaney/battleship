@@ -1,5 +1,6 @@
 import '../style.css';
 import { getBoardOne } from '../main';
+// eslint-disable-next-line import/no-cycle
 import renderPlayGround from './playGround';
 
 const allowDrop = (ev) => {
