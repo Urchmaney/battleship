@@ -2,7 +2,7 @@ const path = require('path');
 
 module.exports = {
   mode: 'development',
-  entry: './src/view.js',
+  entry: './src/views/view.js',
   output: {
     filename: 'main.js',
     path: path.resolve(__dirname, 'dist'),
@@ -17,9 +17,9 @@ module.exports = {
         ],
       },
       {
-        test: /\.(png|svg|jpg|gif)$/,
+        test: /\.(png|svg|jpg|webp|gif|mp3)$/,
         use: [
-          'file-loader',
+          'url-loader',
         ],
       },
       {

@@ -4,8 +4,7 @@ describe('testing ship module', () => {
   let ship = {};
 
   beforeEach(() => {
-    ship = Ship(3);
-    ship.setCoordinate([1, 2, 3]);
+    ship = Ship([1, 2, 3]);
   });
 
   test('ship_hit increase on hit', () => {

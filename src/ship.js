@@ -1,10 +1,10 @@
-const Ship = (length) => {
+const Ship = (coordinate) => {
   let shipHits = 0;
   const getShipHits = () => shipHits;
-  let coordinates = [];
+  let coordinates = coordinate;
   const getCoordinates = () => coordinates;
   const setCoordinate = (coord) => {
-    if (coord.length === length) {
+    if (coord.length === coordinates.length) {
       coordinates = coord;
     }
   };
@@ -15,7 +15,7 @@ const Ship = (length) => {
     }
     return false;
   };
-  const isSunk = () => shipHits === length;
+  const isSunk = () => shipHits === coordinates.length;
   return {
     getShipHits, setCoordinate, hit, isSunk, getCoordinates,
   };
