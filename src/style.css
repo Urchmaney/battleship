@@ -32,6 +32,7 @@ h3{
 
 #main{
    width: 100%;
+   text-align: center;
 }
 
 .info-container{    
@@ -41,6 +42,13 @@ h3{
 }
 .info-container h1{
     color: white;
+}
+
+.tryP{
+    color: white;
+    font-size: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .info-container input{
@@ -64,6 +72,16 @@ h3{
     color:whitesmoke;
     background-color: #ff0000;
 
+}
+
+.btn{
+    width: 30%;
+    height: 70px;
+    font-size: 20px;
+    border: none;
+    border-radius: 10px;
+    color:whitesmoke;
+    background-color: #ff0000;
 }
 
 .ships{

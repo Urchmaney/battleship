@@ -1,6 +1,7 @@
 import {
-  AIMove, makeMove, getBoardTwo, getBoardOne, getPlayerOne,
+  AIMove, makeMove, getBoardTwo, getBoardOne, getPlayerOne, startGame,
 } from '../main';
+import setupPage from './setup';
 import Sound from '../sound';
 import '../style.css';
 import blastSound from '../sounds/blast.mp3';
@@ -8,25 +9,46 @@ import splashSound from '../sounds/splash.mp3';
 import spalshImg from '../images/splash.webp';
 import blastImg from '../images/blast.png';
 
-const endGame = (player) => {
-  const board = document.getElementById('boards');
-  board.innerHTML = `<h3>${player.getName()} has won !!!</h3>`;
-};
-
 let pBlastSound;
 let pSplashSound;
+let pBoard;
+let cBoard;
+let tryBtn;
+let endP;
 const miss = `<img src="${spalshImg}" height="20" width="20" />`;
 const blast = `<img src="${blastImg}" height="20" width="20" />`;
+
+const endGame = (player) => {
+  cBoard.classList.add('disableddiv');
+  pBoard.classList.add('disableddiv');
+  tryBtn.style.display = 'inline';
+  tryBtn.innerHTML = 'Warriors rest not. War again.';
+  endP.style.display = 'block';
+  endP.classList.add('tryP');
+  endP.innerHTML = `${player.getName()} has won !!!`;
+  tryBtn.addEventListener('click', (event) => {
+    startGame(player.getName());
+    setupPage();
+  });
+};
 
 const setupBoardContainer = () => {
   pBlastSound = new Sound(blastSound);
   pSplashSound = new Sound(splashSound);
   const mainDiv = document.getElementById('main');
   const container = document.createElement('div');
+  endP = document.createElement('p');
+  endP.id = 'endP';
+  endP.style.display = 'none';
+  tryBtn = document.createElement('button');
+  tryBtn.id = 'tryBtn';
+  tryBtn.style.display = 'none';
+  tryBtn.classList.add('btn');
+
   const pContainer = document.createElement('div');
   const cContainer = document.createElement('div');
   mainDiv.innerHTML = '';
-  const pBoard = document.createElement('div');
+  pBoard = document.createElement('div');
   pBoard.id = 'pBoard';
   pBoard.classList.add('board');
   const pName = document.createElement('div');
@@ -35,7 +57,7 @@ const setupBoardContainer = () => {
   pContainer.appendChild(pName);
   pContainer.appendChild(pBoard);
 
-  const cBoard = document.createElement('div');
+  cBoard = document.createElement('div');
   cBoard.id = 'computerBoard';
   cBoard.classList.add('board');
   const cName = document.createElement('div');
@@ -47,11 +69,12 @@ const setupBoardContainer = () => {
   container.appendChild(cContainer);
   container.classList.add('play-container');
   mainDiv.appendChild(container);
+  mainDiv.appendChild(endP);
+  mainDiv.appendChild(tryBtn);
 };
 
 
 const renderPlayerBoard = (board) => {
-  const pBoard = document.getElementById('pBoard');
   pBoard.innerHTML = '';
   for (let i = 0; i < 10; i += 1) {
     const divElement = document.createElement('div');
@@ -69,7 +92,6 @@ const renderPlayerBoard = (board) => {
 };
 
 const renderCompBoard = (board) => {
-  const cBoard = document.getElementById('computerBoard');
   for (let i = 0; i < 10; i += 1) {
     const divElement = document.createElement('div');
     for (let j = 0; j < 10; j += 1) {
