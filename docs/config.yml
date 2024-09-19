@@ -1,0 +1,5 @@
+gems:
+  - jekyll-seo-tag
+
+description: Battle Ship | The famous battleship built with JavaScript.
+logo: /battleship.png
