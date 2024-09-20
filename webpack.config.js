@@ -5,7 +5,7 @@ module.exports = {
   entry: './src/views/view.js',
   output: {
     filename: 'main.js',
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'docs'),
   },
   module: {
     rules: [
