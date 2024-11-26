@@ -11,6 +11,10 @@ body{
     background: url(../src/images/bg.jpg);
 }
 
+button {
+    cursor: pointer;
+}
+
 body::after{
     z-index: -1;
     position: absolute;
@@ -78,7 +82,6 @@ h3{
     border-radius: 10px;
     color:whitesmoke;
     background-color: #ff0000;
-
 }
 
 .btn{
